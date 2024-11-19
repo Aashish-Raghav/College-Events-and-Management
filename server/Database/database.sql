@@ -51,7 +51,7 @@ create table if not exists events(
 
 show tables;
 
-insert into admin values("75@iiita.ac.in","Admin","$2b$12$iMWMxM9bKIWrN93j5QmGVeV6LCw8plkvoZo0c7PgNrCvZN80BBBEy");
+insert into admin values("admin@iiita.ac.in","Admin","4e230e6e6346e19a83f90054151cdd4a");
 insert into building values
 ("CC3","1"),("CC2","2"),("CC3","3"),
 ("Auditorium","4"), ("Pavillion","12"),

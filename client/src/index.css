@@ -354,7 +354,7 @@ a:hover{
 left : 40%;
     width : 1000px;
     height : 100%;
-    background : white url("E:\ProjectsWebD\Building_Allocation_project\client\src\components\images\landing_Page.jpg") no-repeat;
+    background : white url("E:\Development\ProjectsWebD\Building_Allocation_project\client\src\components\images\landing_Page.jpg") no-repeat;
 }
 .blurImageHome{
     filter: blur(1px);
@@ -523,14 +523,14 @@ body {
 /* Disclaimer Css */
 
 .backgroundDisclaimer{
-    background: url("E:\\ProjectsWebD\\Building_Allocation_project\\client\\src\\components\\images\\background.png") repeat;
+    background: url("E:\\Development\\ProjectsWebD\\Building_Allocation_project\\client\\src\\components\\images\\background.png") repeat;
     background-size: cover;
     width: 100vw;
     height : 100vh;
 
 }
 .backgroundBuilding{
-    background: url("E:\\ProjectsWebD\\Building_Allocation_project\\client\\src\\components\\images\\background.png") repeat;
+    background: url("E:\\Development\\ProjectsWebD\\Building_Allocation_project\\client\\src\\components\\images\\background.png") repeat;
     background-size: cover;
     width: 100vw;
     /* height : 100vh; */

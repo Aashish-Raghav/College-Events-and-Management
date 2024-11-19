@@ -1,10 +1,12 @@
 import bcrypt, { hash } from "bcrypt";
 import { conn } from "../index.js"; 
+import { md5 } from "js-md5";
 const secret = "test";
 export const signUp = async(req,res)=>{
     const body = req.body;
     const {emailId,Name,type,password} = req.body;
-    const hashedPassword = await bcrypt.hash(password,12);
+    // const hashedPassword = await bcrypt.hash(password,12);
+    const hashedPassword = await md5.hmac.hex(process.env.KEY, password);
     const userValue = [emailId,Name,hashedPassword];
     const userId = [emailId];
     const sql1 = "select (count(user_id)) as cnt from user where user_id = (?)";
@@ -39,7 +41,8 @@ export const signIn = async(req,res)=>{
     const body = req.body;
     const {emailId,type,password} = req.body;
     if (type === "user"){
-        const hashedPassword = await bcrypt.hash(password,12);
+        const hashedPassword = await md5.hmac.hex(process.env.KEY, password);
+        console.log(hashedPassword);
         const userValue = [emailId,hashedPassword];
         const sql1 = "select *  from user where user_id = (?)";
         try{
@@ -52,8 +55,8 @@ export const signIn = async(req,res)=>{
                         res.status(201).json({ found  : 0});
                     }
                     else{
-                        const isPasswordCorrect = await bcrypt.compare(password,result[0].user_password);
-                        if (isPasswordCorrect){
+                        // const isPasswordCorrect = await bcrypt.compare(password,result[0].user_password);
+                        if (hashedPassword == result[0].user_password){
                             res.status(201).json({found : 1,emailId : emailId,password : result[0].user_password,type : type});
                         }
                         else{
@@ -68,7 +71,7 @@ export const signIn = async(req,res)=>{
         }    
     }
     else{
-        const hashedPassword = await bcrypt.hash(password,12);
+        const hashedPassword = await md5.hmac.hex(process.env.KEY, password);
         const userValue = [emailId,hashedPassword];
         const sql1 = "select *  from admin where admin_id = (?)";
         try{
@@ -81,8 +84,7 @@ export const signIn = async(req,res)=>{
                         res.status(201).json({ found  : 0});
                     }
                     else{
-                        const isPasswordCorrect = await bcrypt.compare(password,result[0].admin_password);
-                        if (isPasswordCorrect){
+                        if (hashedPassword == result[0].admin_password){
                             res.status(201).json({found : 1,emailId : emailId,password : result[0].admin_password,type : type});
                         }
                         else{
